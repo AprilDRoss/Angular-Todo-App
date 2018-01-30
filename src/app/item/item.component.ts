@@ -3,7 +3,8 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'todo-item',
   template: `
-    <p>
+    <input type="checkbox" (click)="completeItem()"/>
+    <p class="todo-title" [ngClass]="{'todo-complete':isComplete}">
       {{ todoItem.title }}
     </p>
   `,
@@ -12,6 +13,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ItemComponent implements OnInit {
  @Input() todoItem: any;  
   
+ isComplete: boolean = false;
+
+ completeItem(){
+   this.isComplete = !this.isComplete;
+ }
 
   constructor() { }
 
